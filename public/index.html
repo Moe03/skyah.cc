@@ -1,43 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
+<head>
+  <!-- Created by Mlotov. All Rights Reserved | my twitter: https://twitter.com/Mlotov_ | My discord: Mlotov#4999 -->
+
+  <meta charset="utf-8" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151329005-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-151329005-2');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+  <style>
+    html,
+    body {
+      font-size: 1rem;
+      color: white !important;
+      background: #2c2c2c !important;
+      font-family: Poppins !important;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: white !important;
+    }
+
+    .landing p {
+      margin: 7px 0
+    }
+
+    .custom-a {
+      color: #00ffb2 !important;
+    }
+
+    a:hover {
+      color: #00ffb2 !important;
+    }
+
+    .active-yes {
+      color: #00ffb2 !important;
+    }
+
+    .ui.secondary.pointing.menu .item {
+      color: white;
+    }
+
+    .ui.pagination.menu .active.item {
+      color: white !important;
+      border-color: #00FFB2 !important;
+    }
+
+    .ui.secondary.pointing.menu {
+      margin-bottom: 5vh;
+    }
+
+    .ui.secondary.pointing.menu .item:hover {
+      color: #00ffb2 !important;
+    }
+
+    .ui.modal>.close {
+
+      top: 2.5rem !important;
+      right: 2.5rem !important;
+
+    }
+
+    .ui.collapsing.table {
+      width: 100% !important;
+    }
+
+    .ui.grid {
+      justify-content: center;
+    }
+
+    .ui.inverted.table tr td {
+      border-color:
+        #00ffb2 !important;
+    }
+
+    .ui.inverted.table tr th {
+      border-color:
+        #00ffb2 !important;
+    }
+
+    .search-btn {
+
+      border: 2px solid #00ffb2;
+      border-radius: 5px;
+      padding: 13px 30px;
+      background: transparent;
+      color: white;
+      font-family: Poppins !important;
+      cursor: pointer;
+
+    }
+
+    .back-btn {
+      background:
+        #00ffb2;
+
+      border: none;
+
+      color:
+        #2c2c2c;
+
+      font-family: Poppins;
+
+      border-radius: 20px;
+
+      padding: 5px 20px;
+    }
+
+    .app-btn {
+      border: 2px solid #00ffb2;
+      border-radius: 5px;
+      padding: 13px 18px;
+      background: transparent;
+      color: white;
+      font-family: Poppins !important;
+      cursor: pointer;
+    }
+
+    .app-btn-thick {
+      border: 5px solid #00ffb2;
+      padding: 10px 18px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-family: Poppins;
+      font-weight: 700;
+      border-radius: 5px;
+    }
+
+    .nav-item {
+      padding: 0 10px;
+      margin: 0 5px;
+    }
+
+    .item-container {
+      background: #00ffb2;
+      padding: 0 15px 15px 15px;
+      text-align: center;
+      border-radius: 0 0 5px 5px;
+      margin-bottom: 20px;
+    }
+
+    .disp-flex {
+      display: flex !important;
+    }
+
+    .jcc {
+      justify-content: center !important;
+    }
+
+    .aic {
+      align-content: center;
+    }
+
+    .space-around {
+      justify-content: space-around;
+    }
+
+    .space-even {
+      justify-content: space-evenly;
+    }
+
+    .t-c {
+      text-align: center;
+    }
+
+    .flex-pack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .extra-bold {
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .lds-ellipsis {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .lds-ellipsis div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #00ffb2;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .lds-ellipsis div:nth-child(1) {
+      left: 8px;
+      animation: lds-ellipsis1 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(2) {
+      left: 8px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(3) {
+      left: 32px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(4) {
+      left: 56px;
+      animation: lds-ellipsis3 0.6s infinite;
+    }
+
+    @keyframes lds-ellipsis1 {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes lds-ellipsis3 {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0);
+      }
+    }
+
+    @keyframes lds-ellipsis2 {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(24px, 0);
+      }
+    }
+
+    .box {
+      display: flex;
+      flex-flow: column;
+      height: 100%;
+    }
+
+    #head {
+      flex: 0 1 auto;
+      /* The above is shorthand for:
+      flex-grow: 0,
+      flex-shrink: 1,
+      flex-basis: auto
+      */
+    }
+
+    #root {
+      flex: 1 1 auto;
+    }
+
+    .loading {
+      display: flex;
+      height: 70vh !important;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .loading-alt {
+      display: flex;
+      height: 100% !important;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #foot {
+      text-align: center;
+      flex: 0 1 40px;
+    }
+
+    .footer {
+      margin-top: 25px;
+    }
+
+    .mlr {
+      margin: 0 5px;
+    }
+
+    .footer div a {
+      color: #00FFB2 !important;
+    }
+
+    #foot div a {
+      color: #00ffb2 !important;
+    }
+
+    .main-color {
+      color: #00FFB2 !important;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Your Web Version Of The Auction House" />
+  <title>Skyah</title>
+</head>
+
+<body>
+  <div class="box">
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div id="root">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    </div>
+
+</body>
+
 </html>

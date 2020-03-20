@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Auctions from "./components/Auctions";
+import Landing from "./components/Landing";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Info from "./components/Info";
+import Smart from "./components/Smart";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+
+    return (
+      <Router>
+        <div className="container main-app">
+
+          <Header />
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/ah" component={Auctions} />
+            <Route path="/info" component={Info} />
+            <Route path="/smart" component={Smart} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    )
+  }
+  ;
 }
 
 export default App;
