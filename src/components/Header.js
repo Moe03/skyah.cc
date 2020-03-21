@@ -11,24 +11,30 @@ class Header extends Component {
     }
 
     handleActive = (event) => {
-        var newActive = event.target.attributes.value.value;
+        let newActive = event.target.attributes.value.value;
         this.setState({ active: newActive });
     }
 
     render() {
 
-        var homeClass = "";
-        var infoClass = "";
-        var ahClass = "";
+        let homeClass = "",
+        infoClass = "",
+        ahClass = "",
+	bazaarClass = "";
 
-        if (this.state.active == "home") {
-            homeClass = "active-yes";
-        }
-        if (this.state.active == "info") {
-            infoClass = "active-yes";
-        }
-        if (this.state.active == "ah") {
-            ahClass = "active-yes";
+        switch(this.state.active) {
+	    default:
+	    case "home":
+		homeClass = "active-yes";
+		break;
+	    case "info":
+		infoClass = "active-yes";
+		break;
+	    case "ah":
+		ahClass = "active-yes";
+		break;
+	    case "bazaar":
+		bazaarClass = "active-yes";
         }
 
         return (
@@ -36,9 +42,7 @@ class Header extends Component {
             <nav className="navbar" style={{ marginTop: "25px", marginBottom: "45px" }}>
                 <div className="disp-flex" style={{ justifyContent: "space-around" }}>
                     <div className="skyah">
-                        <Link to="/">
-                            <a className="navbar-brand" href="#">Skyah.cc</a>
-                        </Link>
+                        <Link to="/">Skyah.cc</Link>
                     </div>
                     <div className="disp-flex">
                         <Link to="/">
@@ -49,6 +53,11 @@ class Header extends Component {
                         <Link to="/ah">
                             <div className="nav-item">
                                 <a className={ahClass} onClick={this.handleActive} value="ah" href="#ah">Ah</a>
+                            </div>
+                        </Link>
+			<Link to="/bazaar">
+                            <div className="nav-item">
+                                <a className={bazaarClass} onClick={this.handleActive} value="bazaar" href="#bazaar">Bazaar</a>
                             </div>
                         </Link>
                         <Link to="/info">

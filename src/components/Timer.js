@@ -17,21 +17,17 @@ class Timer extends Component {
     componentDidMount() {
 
         window.setInterval(() => {
-            var end = this.props.end;
-            if (this.state.virtualNow == 0) {
-                var now = this.props.unix
-            }
-            else {
-                var now = this.state.virtualNow;
+            let end = this.props.end;
+	    let now = this.state.virtualNow;
+	    let aucValue = false;
+            if (this.state.virtualNow === 0) {
+                now = this.props.unix;
             }
             if (end > now) {
-                var aucValue = true;
-            }
-            else {
-                var aucValue = false;
+                aucValue = true;
             }
 
-            var dispTime = this.sformat((end - now) / 1000);
+            let dispTime = this.sformat((end - now) / 1000);
 
             this.setState({ aucTime: dispTime, nowUNIX: now + 1000, virtualNow: now + 1000, aucStatus: aucValue });
         }, 1000)
@@ -45,7 +41,7 @@ class Timer extends Component {
         }
 
         // create array of day, hour, minute and second values
-        var fm = [
+        let fm = [
             Math.floor(s / (3600 * 24)),
             Math.floor(s % (3600 * 24) / 3600),
             Math.floor(s % 3600 / 60),
@@ -53,7 +49,7 @@ class Timer extends Component {
         ];
 
         // map over array
-        var output = $.map(fm, (v, i) => {
+        let output = $.map(fm, (v, i) => {
 
             // if a truthy value
             if (Boolean(v)) {
@@ -89,22 +85,17 @@ class Timer extends Component {
     }
 
     render() {
-
-        if (this.state.aucStatus == 1) {
-            var beforeEnding = <p style={{ marginBottom: 0 }} >Ending In</p>;
-            var ago = "";
+	let beforeEnding = <div className="loading-alt"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>;
+	let ago = "";
+        if (this.state.aucStatus === true) {
+            beforeEnding = <p style={{ marginBottom: 0 }} >Ending In</p>;
+            ago = "";
         }
-        else if (this.state.aucStatus == 0) {
-            var beforeEnding = <p style={{ color: "red", marginBottom: 0 }}>Auction Ended</p>;
-            var ago = "ago"
+        else if (this.state.aucStatus === false) {
+            beforeEnding = <p style={{ color: "red", marginBottom: 0 }}>Auction Ended</p>;
+            ago = "ago"
         }
-        else {
-            var beforeEnding = <div className="loading-alt"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>;
-            var ago = ""
-        }
-
         const timeLeft = this.state.aucTime;
-
         return (
             <p>{beforeEnding} {timeLeft} {ago}</p>
         )
