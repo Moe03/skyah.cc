@@ -17,18 +17,24 @@ class Header extends Component {
 
     render() {
 
-        let homeClass = "";
-        let infoClass = "";
-        let ahClass = "";
+        let homeClass = "",
+        infoClass = "",
+        ahClass = "",
+	bazaarClass = "";
 
-        if (this.state.active === "home") {
-            homeClass = "active-yes";
-        }
-        if (this.state.active === "info") {
-            infoClass = "active-yes";
-        }
-        if (this.state.active === "ah") {
-            ahClass = "active-yes";
+        switch(this.state.active) {
+	    default:
+	    case "home":
+		homeClass = "active-yes";
+		break;
+	    case "info":
+		infoClass = "active-yes";
+		break;
+	    case "ah":
+		ahClass = "active-yes";
+		break;
+	    case "bazaar":
+		bazaarClass = "active-yes";
         }
 
         return (
@@ -47,6 +53,11 @@ class Header extends Component {
                         <Link to="/ah">
                             <div className="nav-item">
                                 <a className={ahClass} onClick={this.handleActive} value="ah" href="#ah">Ah</a>
+                            </div>
+                        </Link>
+			<Link to="/bazaar">
+                            <div className="nav-item">
+                                <a className={bazaarClass} onClick={this.handleActive} value="bazaar" href="#bazaar">Bazaar</a>
                             </div>
                         </Link>
                         <Link to="/info">
