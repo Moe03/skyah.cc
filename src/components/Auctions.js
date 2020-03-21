@@ -213,7 +213,7 @@ class Auctions extends Component {
 
         let Back = <button className="back-btn" onClick={this.resetState}>Back</button>;
 
-        if (this.state.auctions === "false") {
+        if (this.state.auctions === []) {
 
             return (
 
