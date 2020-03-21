@@ -6,10 +6,14 @@ import $ from "jquery";
 class Landing extends Component {
 
   render() {
-    let iframe = <iframe title="discord" style={{ margin: "30px 0" }} src="https://discordapp.com/widget?id=646838200501010432&theme=dark" width="300" height="500" allowtransparency="true" frameborder="0"></iframe>;
+
     if ($(document).width() > 550) {
-      iframe = <iframe title="discord" style={{ margin: "30px 0" }} src="https://discordapp.com/widget?id=646838200501010432&theme=dark" width="500" height="500" allowtransparency="true" frameborder="0"></iframe>
+      var iframe = <iframe style={{ margin: "30px 0" }} src="https://discordapp.com/widget?id=646838200501010432&theme=dark" width="500" height="500" allowtransparency="true" frameborder="0"></iframe>
     }
+    else {
+      var iframe = <iframe style={{ margin: "30px 0" }} src="https://discordapp.com/widget?id=646838200501010432&theme=dark" width="300" height="500" allowtransparency="true" frameborder="0"></iframe>
+    }
+
     return (
       <Container className="landing disp-flex jcc" style={{ alignItems: "center", flexDirection: "column", marginTop: "50px" }}>
         <h1>Welcome To Skyah!</h1>
@@ -19,7 +23,8 @@ class Landing extends Component {
         {iframe}
       </Container>
     )
-  };
+  }
+  ;
 }
 
 export default Landing;
