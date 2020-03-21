@@ -46,7 +46,7 @@ class Auctions extends Component {
                 <Modal.Content>
 
 
-                    <Link to="/smart">Check out Smart Search!</Link>
+                    <Link to="/smart"><a href="#">Check out Smart Search!</a></Link>
 
 
                     <Popup size="small" content={<div><p>
@@ -103,7 +103,7 @@ class Auctions extends Component {
         })
 
 
-        if (this.state.searchTerm === false) {
+        if (this.state.searchTerm == false) {
 
             $.getJSON(this.state.APIlink + "top", (result) => {
 
@@ -143,7 +143,7 @@ class Auctions extends Component {
     }
 
     hitEnter = (e) => {
-        if (e.keyCode === 13) {
+        if (e.keyCode == 13) {
             this.getSearch();
         }
     }
@@ -151,25 +151,23 @@ class Auctions extends Component {
 
     getSearch = (e) => {
 
-        let searchVal = $(".ui input").val().trim();
-	let playerSearch;
-	let player;
+        var searchVal = $(".ui input").val().trim();
 
         if (searchVal) {
 
             if (searchVal.includes("/ah")) {
 
-                playerSearch = true;
+                var playerSearch = true;
 
-                player = searchVal.replace("/ah", "");
+                var player = searchVal.replace("/ah", "");
 
             }
 
             else {
 
-                playerSearch = false;
+                var playerSearch = false;
 
-                player = false;
+                var player = false;
 
             }
 
@@ -211,9 +209,9 @@ class Auctions extends Component {
 
     render() {
 
-        let Back = <button className="back-btn" onClick={this.resetState}>Back</button>;
+        var Back = <button className="back-btn" onClick={this.resetState}>Back</button>;
 
-        if (this.state.auctions === []) {
+        if (this.state.auctions == "false") {
 
             return (
 
@@ -244,9 +242,9 @@ class Auctions extends Component {
 
                 const endID = startID + 20;
 
-                let Back = <button className="back-btn" style={{ marginLeft: "10px" }} onClick={this.resetState}>Back</button>;
+                var Back = <button className="back-btn" style={{ marginLeft: "10px" }} onClick={this.resetState}>Back</button>;
 
-                if (this.state.searchTerm === false) {
+                if (this.state.searchTerm == false) {
 
                     Back = "";
 
@@ -254,29 +252,29 @@ class Auctions extends Component {
 
                 // const pagesNum = this.state.auctions.length / 20;
 
-		let showPlayer;
+
                 if (this.state.playerNow) {
 
                     if (this.state.playerName.includes("-h")) {
-                        let name = this.state.playerName.replace("-h", "");
-                        showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions' History of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{name}</span></h1>
+                        var name = this.state.playerName.replace("-h", "");
+                        var showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions' History of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{name}</span></h1>
                     }
                     else {
-                        showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{this.state.playerName}</span></h1>
+                        var showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{this.state.playerName}</span></h1>
                     }
                 }
 
                 else {
 
-                    showPlayer = "";
+                    var showPlayer = "";
 
 
                 }
 
-		let PaginationOutput;
+
                 if (this.state.auctions.length >= 20) {
 
-                    PaginationOutput =
+                    var PaginationOutput =
 
                         <Pagination
 
@@ -306,7 +304,7 @@ class Auctions extends Component {
 
                 else {
 
-                    PaginationOutput = "";
+                    var PaginationOutput = "";
 
                 }
 
@@ -372,7 +370,7 @@ class Auctions extends Component {
             }
 
 
-            else if (this.state.searched && this.state.auctions.length === 0) {
+            else if (this.state.searched && this.state.auctions.length == 0) {
 
                 return (
 
