@@ -19,8 +19,7 @@ class Landing extends Component {
         {iframe}
       </Container>
     )
-  }
-  ;
+  };
 }
 
 export default Landing;
