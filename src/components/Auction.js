@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Modal, Popup } from "semantic-ui-react";
+import { Grid, Modal } from "semantic-ui-react";
 import Timer from "./Timer";
 import AuctionModal from "./AuctionModal";
 
@@ -24,10 +24,10 @@ class Auction extends Component {
 
   formatCash = (n) => {
     if (n < 1e3) return n;
-    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
-    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
-    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
-    if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
+    if (n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+    if (n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+    if (n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+    return +(n / 1e12).toFixed(1) + "T";
   };
 
   render() {
@@ -35,14 +35,16 @@ class Auction extends Component {
     const id = this.uid();
     const a = this.props.details;
     const aucTimer = <Timer end={this.props.details["end"]} unix={this.props.unix} />;
-
-    if (a["item_count"] == 1) {
-      var count = "x1";
-      var s = "";
+    
+    let count;
+    let s;
+    if (a["item_count"] === "1") {
+      count = "x1";
+      s = "";
     }
     else {
-      var count = "x" + a["item_count"];
-      var s = "s";
+      count = "x" + a["item_count"];
+      s = "s";
     }
 
     const detailsBtn = <button id={id} onClick={this.getUsername} className="app-btn" >Details</button>;

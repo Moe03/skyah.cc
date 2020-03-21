@@ -24,19 +24,19 @@ class AuctionModal extends Component {
     componentDidMount() {
         this.getUsername();
         window.setInterval(() => {
-            var end = this.props.det["end"];
-            if (this.state.nowUNIX != 0) {
+            let end = this.props.det["end"];
+            if (this.state.nowUNIX !== 0) {
 
-                var now = this.state.nowUNIX
-
+                let now = this.state.nowUNIX
+		let aucValue;
                 if (end > now) {
-                    var aucValue = true;
+                    aucValue = true;
                 }
                 else {
-                    var aucValue = false;
+                    aucValue = false;
                 }
 
-                var dispTime = this.sformat((end - now) / 1000);
+                let dispTime = this.sformat((end - now) / 1000);
 
                 this.setState({ aucTime: dispTime, nowUNIX: now + 1000, aucStatus: aucValue });
             }
@@ -51,7 +51,7 @@ class AuctionModal extends Component {
         }
 
         // create array of day, hour, minute and second values
-        var fm = [
+        let fm = [
             Math.floor(s / (3600 * 24)),
             Math.floor(s % (3600 * 24) / 3600),
             Math.floor(s % 3600 / 60),
@@ -136,7 +136,7 @@ class AuctionModal extends Component {
     copy = () => {
         // Create container for the HTML
         // [1]
-        var container = document.createElement('div')
+        let container = document.createElement('div')
         container.innerHTML = "/ah " + this.state.sellerName;
 
         // Hide element
@@ -146,7 +146,7 @@ class AuctionModal extends Component {
         container.style.opacity = 0
 
         // Detect all style sheets of the page
-        var activeSheets = Array.prototype.slice.call(document.styleSheets)
+        let activeSheets = Array.prototype.slice.call(document.styleSheets)
             .filter(function (sheet) {
                 return !sheet.disabled
             })
@@ -159,7 +159,7 @@ class AuctionModal extends Component {
         // [4]
         window.getSelection().removeAllRanges()
 
-        var range = document.createRange()
+        let range = document.createRange()
         range.selectNode(container)
         window.getSelection().addRange(range)
 
@@ -167,13 +167,13 @@ class AuctionModal extends Component {
         document.execCommand('copy')
 
         // [5.2]
-        for (var i = 0; i < activeSheets.length; i++) activeSheets[i].disabled = true
+        for (let i = 0; i < activeSheets.length; i++) activeSheets[i].disabled = true
 
         // [5.3]
         document.execCommand('copy')
 
         // [5.4]
-        for (var i = 0; i < activeSheets.length; i++) activeSheets[i].disabled = false
+        for (let i = 0; i < activeSheets.length; i++) activeSheets[i].disabled = false
 
         // Remove the container
         // [6]
@@ -184,41 +184,40 @@ class AuctionModal extends Component {
 
     render() {
         const a = this.state.det;
+	let imgLink;
+	let beforeEnding;
         if (this.state.sellerLoaded) {
-            var src = "https://minotar.net/armor/body/" + this.state.sellerName + "/70.png";
-            var imgLink = <img src={src}></img>
+            let src = "https://minotar.net/armor/body/" + this.state.sellerName + "/70.png";
+            imgLink = <img src={src} alt="seller"></img>
         }
         else {
-            var imgLink = <div className="disp-flex" style={{ justifyContent: "center", alignItems: "center" }}><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>;
+            imgLink = <div className="disp-flex" style={{ justifyContent: "center", alignItems: "center" }}><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>;
         }
         if (this.state.aucStatus) {
-            var beforeEnding = <p style={{ marginBottom: 0, textAlign: "center" }} >Ending In</p>;
-            var ago = "";
+            beforeEnding = <p style={{ marginBottom: 0, textAlign: "center" }} >Ending In</p>;
         }
         else {
-            var beforeEnding = <p style={{ color: "red", marginBottom: 0, textAlign: "center" }}>Auction Ended</p>;
-            var ago = "ago"
+            beforeEnding = <p style={{ color: "red", marginBottom: 0, textAlign: "center" }}>Auction Ended</p>;
         }
 
-        var timeLeft = this.state.aucTime;
-
+        let timeLeft = this.state.aucTime;
+	let timeOutput = [];
         if (timeLeft === timeLeft.toString()) {
             timeLeft = timeLeft.split(",");
-            var timeOutput = [];
-            var numThings = [];
-            var wordThings = [];
+            let numThings = [];
+            let wordThings = [];
 
             timeLeft.forEach(element => {
-                var thingy = element.split(" ");
+                let thisUsedToBeCalledThingy = element.split(" ");
 
-                thingy.forEach(element => {
+                thisUsedToBeCalledThingy.forEach(element => {
 
                     if (isNaN(element)) {
-                        var throat = <span>{element}</span>;
+                        let throat = <span>{element}</span>;
                         wordThings.push(throat);
                     }
                     else if (element) {
-                        var throat = <span>{element}</span>;
+                        let throat = <span>{element}</span>;
                         numThings.push(throat);
                     }
                 });
@@ -234,33 +233,36 @@ class AuctionModal extends Component {
             timeOutput = this.state.aucTime;
         }
 
-        var lore = a["item_lore"];
-
+        let lore = a["item_lore"];
+	let bid_num;
+	let count;
+	let s;
         if (a["bid_num"]) {
-            var bid_num = a["bid_num"];
+            bid_num = a["bid_num"];
         }
         else {
-            var bid_num = "No";
+            bid_num = "No";
         }
 
-        if (a["item_count"] == 1) {
-            var count = "x1";
-            var s = "";
+        if (a["item_count"] === "1") {
+            count = "x1";
+            s = "";
         }
         else {
-            var count = "x" + a["item_count"];
-            var s = "s";
+            count = "x" + a["item_count"];
+            s = "s";
         }
 
         if (!a["anvils"]) {
             a["anvils"] = "1";
         }
 
-        var width = $(document).width();
+        let width = $(document).width();
+	let output;
 
         if (width > 550) {
-            var output =
-                <div style={{ justifyContent: "space-evenly", border: "5px solid #00ffb2", borderRadius: "20px", paddingBottom: "20px" }} className="disp-flex auc-modal">
+            output =
+           <div style={{ justifyContent: "space-evenly", border: "5px solid #00ffb2", borderRadius: "20px", paddingBottom: "20px" }} className="disp-flex auc-modal">
                     <div style={{ width: "130px", marginTop: "30px" }}>
                         <div>
                             <div style={{ minHeight: "140px" }} className="disp-flex jcc">
@@ -300,7 +302,7 @@ class AuctionModal extends Component {
                 </div >
         }
         else {
-            var output =
+            output =
                 <div style={{ flexDirection: "column", border: "5px solid #00ffb2", borderRadius: "10px", paddingBottom: "20px" }} className="disp-flex auc-modal">
                     <div style={{ width: "100%" }}>
                         <div className="item-container">

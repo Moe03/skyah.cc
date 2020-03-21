@@ -11,23 +11,23 @@ class Header extends Component {
     }
 
     handleActive = (event) => {
-        var newActive = event.target.attributes.value.value;
+        let newActive = event.target.attributes.value.value;
         this.setState({ active: newActive });
     }
 
     render() {
 
-        var homeClass = "";
-        var infoClass = "";
-        var ahClass = "";
+        let homeClass = "";
+        let infoClass = "";
+        let ahClass = "";
 
-        if (this.state.active == "home") {
+        if (this.state.active === "home") {
             homeClass = "active-yes";
         }
-        if (this.state.active == "info") {
+        if (this.state.active === "info") {
             infoClass = "active-yes";
         }
-        if (this.state.active == "ah") {
+        if (this.state.active === "ah") {
             ahClass = "active-yes";
         }
 
@@ -36,9 +36,7 @@ class Header extends Component {
             <nav className="navbar" style={{ marginTop: "25px", marginBottom: "45px" }}>
                 <div className="disp-flex" style={{ justifyContent: "space-around" }}>
                     <div className="skyah">
-                        <Link to="/">
-                            <a className="navbar-brand" href="#">Skyah.cc</a>
-                        </Link>
+                        <Link to="/">Skyah.cc</Link>
                     </div>
                     <div className="disp-flex">
                         <Link to="/">
