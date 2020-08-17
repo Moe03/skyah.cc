@@ -109,16 +109,16 @@ class AuctionModal extends Component {
     getUsername = () => {
         const a = this.props.det;
 
-        $.getJSON("https://hyskyapi.cc/getusername.php?uuid=" + this.props.det["auctioneer"], (result) => {
+        $.getJSON("http://18.197.98.21/HyskyAPI/getusername.php?uuid=" + this.props.det["auctioneer"], (result) => {
 
             this.setState({
                 sellerName: result, sellerLoaded: true
             });
-            $.getJSON("https://hyskyapi.cc/getTimenow.php", (result) => {
+            $.getJSON("http://18.197.98.21/HyskyAPI/getTimenow.php", (result) => {
                 this.setState({ nowUNIX: result });
             })
             if (a["latest_bid"]) {
-                $.getJSON("https://hyskyapi.cc/getusername.php?uuid=" + a["latest_bid"]["bidder"], (result) => {
+                $.getJSON("http://18.197.98.21/HyskyAPI/getusername.php?uuid=" + a["latest_bid"]["bidder"], (result) => {
                     if (result) {
                         this.setState({ topBidder: result });
                     }
