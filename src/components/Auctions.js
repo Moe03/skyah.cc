@@ -18,7 +18,7 @@ class Auctions extends Component {
         super(props);
 
 
-        const APIlink = "https://hyskyapi.cc/apihandle.php?req=";
+        const APIlink = "http://18.197.98.21/HyskyAPI/apihandle.php?req=";
 
 
 
