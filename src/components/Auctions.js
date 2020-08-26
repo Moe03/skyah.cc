@@ -18,7 +18,7 @@ class Auctions extends Component {
         super(props);
 
 
-        const APIlink = "http://18.197.98.21/HyskyAPI/apihandle.php?req=";
+        const APIlink = "https://certii.hyskyapi.cc/apihandle.php?req=";
 
 
 
@@ -95,7 +95,7 @@ class Auctions extends Component {
     componentDidMount() {
 
 
-        $.getJSON("https://hyskyapi.cc/getTimenow.php", (result) => {
+        $.getJSON("https://certii.hyskyapi.cc/getTimenow.php", (result) => {
 
 
             this.setState({ realUnix: result });
