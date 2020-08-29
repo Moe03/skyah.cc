@@ -261,7 +261,7 @@ class AuctionModal extends Component {
         if (width > 550) {
             var output =
                 <div style={{ justifyContent: "space-evenly", border: "5px solid #00ffb2", borderRadius: "20px", paddingBottom: "20px" }} className="disp-flex auc-modal">
-                    <div style={{ width: "130px", marginTop: "30px" }}>
+                    <div style={{ width: "130px", marginTop: "70px" }}>
                         <div>
                             <div style={{ minHeight: "140px" }} className="disp-flex jcc">
                                 {imgLink}
