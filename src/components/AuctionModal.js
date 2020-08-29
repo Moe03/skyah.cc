@@ -330,7 +330,7 @@ class AuctionModal extends Component {
                                 <div style={{ width: "40px" }}></div>
                             </div>
                             <div style={{ marginTop: "20px", textAlign: "center" }}>
-                                <p style={{ fontSize: "12px", color: "#9d9d9d" }}>{{ top_bid_by }}</p>
+                                <p style={{ fontSize: "12px", color: "#9d9d9d" }}>{ top_bid_by }</p>
                                 <p style={{ fontSize: "12px", color: "#9d9d9d" }}>This item has <span style={{ color: "#00ffb2" }}>{bid_num}</span> Bids</p>
                             </div>
 
