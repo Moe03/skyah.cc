@@ -238,9 +238,11 @@ class AuctionModal extends Component {
 
         if (a["bid_num"]) {
             var bid_num = a["bid_num"];
+            var top_bid_by = "Top bid by "+ this.state.topBidder;
         }
         else {
             var bid_num = "No";
+            var top_bid_by = "";
         }
 
         if (a["item_count"] == 1) {
@@ -327,7 +329,7 @@ class AuctionModal extends Component {
                                 <div style={{ width: "40px" }}></div>
                             </div>
                             <div style={{ marginTop: "20px", textAlign: "center" }}>
-                                <p style={{ fontSize: "12px", color: "#9d9d9d" }}>Top bid by <span style={{ color: "#00ffb2" }}>{this.state.topBidder}</span></p>
+                                <p style={{ fontSize: "12px", color: "#9d9d9d" }}>{{ top_bid_by }}</span></p>
                                 <p style={{ fontSize: "12px", color: "#9d9d9d" }}>This item has <span style={{ color: "#00ffb2" }}>{bid_num}</span> Bids</p>
                             </div>
 
