@@ -16,7 +16,12 @@ class Landing extends Component {
 
     return (
       <Container className="landing disp-flex jcc" style={{ alignItems: "center", flexDirection: "column", marginTop: "50px" }}>
+        <h1>Welcome To Skyah!</h1>
         <h1>Shutting down soon.</h1>
+        <p>Here you can find some sweet deals off our cool little <Link to="/ah"> <a className="custom-a" href="#ah">AH</a> </Link></p>
+        <p>Have a suggestion or want to report a bug?</p>
+        <p>Feel free to do it in our discord!</p>
+        {iframe}
       </Container>
     )
   }
