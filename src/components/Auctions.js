@@ -59,9 +59,13 @@ class Auctions extends Component {
 
                         <p>
 
-                            Search for enchants using /ebs (Enchants) | ex. /ebs Critical3 Sharpness 5, You can also add options to search for only books or potions <br />
+                            Search for enchants using /ebs (Enchants)
 
-                            ex. /ebs Sharpness5 Critical3 book (or potion)
+                    </p>
+                    <br />
+                    <p>
+
+                            Search for auctions someone has bid on using /spy (username)
 
                     </p></div>} trigger={<Input style={{ width: "100%", marginTop: "20px" }} placeholder="Search" onKeyDown={this.hitEnter} />} />
 
@@ -84,7 +88,9 @@ class Auctions extends Component {
 
             playerNow: false,
 
-            playerName: false
+            playerName: false,
+
+            spy: false
 
         };
 
@@ -163,16 +169,18 @@ class Auctions extends Component {
 
             }
 
-            else {
+            else if(searchVal.includes("/spy")){
 
-                var playerSearch = false;
+                var playerSearch = true;
 
-                var player = false;
+                var player = searchVal.replace("/spy", "");
+
+                var spyVal = true;
 
             }
 
 
-            this.setState({ searchTerm: searchVal, auctions: [], playerNow: playerSearch, playerName: player, page: 1, searched: true }, () => {
+            this.setState({ searchTerm: searchVal, auctions: [], playerNow: playerSearch, playerName: player, page: 1, searched: true, spy: spyVal }, () => {
 
                 this.componentDidMount();
 
@@ -253,15 +261,12 @@ class Auctions extends Component {
                 // const pagesNum = this.state.auctions.length / 20;
 
 
-                if (this.state.playerNow) {
-
-                    if (this.state.playerName.includes("-h")) {
-                        var name = this.state.playerName.replace("-h", "");
-                        var showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions' History of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{name}</span></h1>
-                    }
-                    else {
+                if (this.state.playerNow && !this.state.spy) {
                         var showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Auctions of <span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{this.state.playerName}</span></h1>
-                    }
+                }
+
+                else if(this.state.spy){
+                    var showPlayer = <h1 className="t-c" style={{ margin: "40px 0" }}>Current auctions<span style={{ color: "#00ffb2", textTransform: "uppercase" }}>{this.state.playerName}</span> is bidding on</h1>
                 }
 
                 else {
