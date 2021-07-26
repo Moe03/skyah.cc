@@ -3,10 +3,24 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        let startURL;
+        if(this.props.active == "/"){
+            startURL = 'home';
+        }
+        else if(this.props.active == "/ah"){
+            startURL = 'ah';
+        }
+        else if(this.props.active == "/info"){
+            startURL = 'info';
+        }
+        else{
+            startURL = '';
+        }
         this.state = {
-            active: "home"
+            active: startURL
+
         }
     }
 
@@ -17,43 +31,46 @@ class Header extends Component {
 
     render() {
 
-        var homeClass = "";
-        var infoClass = "";
-        var ahClass = "";
+        console.log(this.props.active);
+       
+        var homeClass = "nav-item";
+        var infoClass = "nav-item";
+        var ahClass = "nav-item";
+
+        let mainClass = ' active-yes';
 
         if (this.state.active == "home") {
-            homeClass = "active-yes";
+            homeClass += mainClass;
         }
         if (this.state.active == "info") {
-            infoClass = "active-yes";
+            infoClass += mainClass;
         }
         if (this.state.active == "ah") {
-            ahClass = "active-yes";
+            ahClass += mainClass;
         }
 
-        return (
+     
 
-            <nav className="navbar" style={{ marginTop: "25px", marginBottom: "45px" }}>
-                <div className="disp-flex" style={{ justifyContent: "space-around" }}>
-                    <div className="skyah">
-                        <Link to="/">
-                            <a className="navbar-brand" href="#">Skyah.cc</a>
-                        </Link>
-                    </div>
+        return (
+            
+            <nav className="" style={{ marginTop: "25px", marginBottom: "45px" }}>
+                <h3 style={{ textAlign: "center", letterSpacing: "30px" }}>SKYA<span style={{letterSpacing: "0" }}>H</span></h3>
+                <div className="disp-flex" style={{ justifyContent: "center" }}>
+                    
                     <div className="disp-flex">
-                        <Link to="/">
-                            <div className="nav-item active">
-                                <a className={homeClass} onClick={this.handleActive} value="home" href="#home">Home</a>
+                        <Link value="home" onClick={this.handleActive} to="/">
+                            <div value="home" className={homeClass}>
+                                <a value="home" href="#home">HOME</a>
                             </div>
                         </Link>
-                        <Link to="/ah">
-                            <div className="nav-item">
-                                <a className={ahClass} onClick={this.handleActive} value="ah" href="#ah">Ah</a>
+                        <Link value="ah" onClick={this.handleActive} to="/ah">
+                            <div value="ah" className={ahClass}>
+                                <a value="ah" href="#ah">AH</a>
                             </div>
                         </Link>
-                        <Link to="/info">
-                            <div className="nav-item float-right">
-                                <a className={infoClass} onClick={this.handleActive} value="info" href="#info">info</a>
+                        <Link value="info" onClick={this.handleActive} to="/info">
+                            <div value="info" className={infoClass}>
+                                <a value="info" href="#info">INFO</a>
                             </div>
                         </Link>
                     </div>

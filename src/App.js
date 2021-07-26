@@ -10,15 +10,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends Component {
 
   render() {
+    let active = window.location.pathname;
 
     return (
       <Router>
         <div className="container main-app">
 
-          <Header />
+          <Header active = {active} />
           <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path="/ah" component={Auctions} />
+            <Route path="/ah" component={Auctions}/>
             <Route path="/info" component={Info} />
             <Route path="/smart" component={Smart} />
           </Switch>
