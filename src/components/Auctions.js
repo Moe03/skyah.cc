@@ -8,6 +8,10 @@ import { Container, Header, Modal, Input, Grid, Pagination, Popup } from 'semant
 
 import { Link } from "react-router-dom";
 
+import { IoArrowForwardCircleOutline, IoArrowBackCircleOutline } from "react-icons/io5";
+
+import Checkbox from "react-custom-checkbox";
+
 
 class Auctions extends Component {
 
@@ -20,6 +24,42 @@ class Auctions extends Component {
 
         const APIlink = "https://hyskyapi.000webhostapp.com/apihandle.php?req=";
 
+        let paginationForward;
+
+        let paginationBack;
+
+        paginationForward = <a style={{ display: 'flex', alignItems: 'center'}} href="#"><IoArrowForwardCircleOutline style={{ width: "40px", height: "40px", marginLeft: '25px' }}/></a>
+
+        paginationBack = <a style={{ display: 'flex', alignItems: 'center'}} href="#"><IoArrowBackCircleOutline style={{ width: "40px", height: "40px", marginRight: "25px" }}/></a>
+
+        let searchSection = 
+                <div className="searchDiv" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "50%"}}>{paginationBack}<input onKeyDown={this.hitEnter} style={{width: "100%"}} placeholder="SEARCH" type="text"></input> {paginationForward}</div>
+                    <div className="checkbox-div" style={{display: "flex"}}>
+                        
+                   <div>
+                   
+                        <input style={{marginRight: "5px"}} id="c1" type="checkbox" checked></input>
+                        <label for="c1">Ending Soon</label>
+                       
+                   </div>
+                    
+                   <div>
+                   
+                        <input style={{marginRight: "5px"}} id="c2" type="checkbox"></input>
+                        <label for="c2">Least Bids</label>
+                       
+                   </div>
+                   <div>
+                   
+                        <input style={{marginRight: "5px"}} id="c3" type="checkbox"></input>
+                        <label for="c3">Cheapest</label>
+                       
+                   </div>
+                    </div>
+
+                </div>  
+                //
 
 
         this.state = {
@@ -39,50 +79,7 @@ class Auctions extends Component {
             searchTerm: false,
             searchStatus: false,
 
-            searchNow: <Modal style={{ justifyContent: "center", textAlign: "center" }} open={this.searchStatus} trigger={<button className="app-btn">Search</button>} basic size='small'>
-
-                <Header style={{ display: "flex", justifyContent: "center" }} icon='search' content='Looking for some nice deals, huh?' />
-
-                <Modal.Content>
-
-
-                    <Link to="/smart"><a href="#">Check out Smart Search!</a></Link>
-
-
-                    <Popup size="small" content={<div><p>
-
-                        Search for an item or type /ah (Player) to search for a player's auctions
-
-                    </p>
-
-                        <br />
-
-                        <p>
-
-                            Search for enchants using /ebs (Enchants)
-
-                    </p>
-                    <br />
-                    <p>
-
-                            Search for auctions someone has bid on using /spy (username)
-
-                    </p></div>} trigger={<Input style={{ width: "100%", marginTop: "20px" }} placeholder="Search" onKeyDown={this.hitEnter} />} />
-
-
-                </Modal.Content>
-
-                <Modal.Actions style={{ display: "flex", justifyContent: "center" }}>
-
-                    <button className="search-btn" id="Yes" onClick={this.getSearch} >
-
-                        Search
-
-              </button>
-
-                </Modal.Actions>
-
-            </Modal>,
+            searchNow: searchSection,
 
             modalNow: false,
 
@@ -107,6 +104,11 @@ class Auctions extends Component {
             this.setState({ realUnix: result });
 
         })
+
+        window.setInterval(() => {
+            console.log(this.state.realUnix)
+            this.setState({ realUnix: this.state.realUnix + 1000 });
+        }, 1000)
 
 
         if (this.state.searchTerm == false) {
@@ -149,6 +151,7 @@ class Auctions extends Component {
     }
 
     hitEnter = (e) => {
+        console.log(e);
         if (e.keyCode == 13) {
             this.getSearch();
         }
@@ -209,13 +212,11 @@ class Auctions extends Component {
 
     }
 
-    openSearch = () => {
-        this.setState({
-            searchStatus: true
-        })
-    }
+
 
     render() {
+
+        console.log(this.state.realUnix);
 
         var Back = <button className="back-btn" onClick={this.resetState}>Back</button>;
 
@@ -270,60 +271,10 @@ class Auctions extends Component {
                 }
 
                 else {
-
                     var showPlayer = "";
 
-
                 }
-
-
-                if (this.state.auctions.length >= 20) {
-
-                    var PaginationOutput =
-
-                        <Pagination
-
-                            defaultActivePage={this.state.page}
-
-                            firstItem={null}
-
-                            lastItem={null}
-
-                            pointing
-
-                            secondary
-
-                            totalPages={10}
-
-                            siblingRange={1}
-
-                            boundaryRange={0}
-
-                            ellipsisItem={null}
-
-                            onPageChange={this.pageChange}
-
-                        />
-
-                }
-
-                else {
-
-                    var PaginationOutput = "";
-
-                }
-
-
-
-                const paginationStyle = {
-
-                    display: "flex",
-
-                    justifyContent: "center"
-
-                }
-
-
+            
 
                 const output = this.state.auctions.slice(startID, endID).map((aucitem) =>
 
@@ -333,6 +284,8 @@ class Auctions extends Component {
 
                 );
 
+                let searchSection = this.state.searchNow;
+                //
 
                 return (
 
@@ -346,9 +299,9 @@ class Auctions extends Component {
 
                             {/* Search Box: */}
 
-                            {this.state.searchNow}
+                            {searchSection}
 
-                            {Back}
+                           
 
 
                         </div>
@@ -359,12 +312,7 @@ class Auctions extends Component {
 
                         </div>
 
-                        <div style={paginationStyle}>
-
-                            {PaginationOutput}
-
-                        </div>
-
+                       
                         <Grid><Grid.Row columns={3}>{output}</Grid.Row></Grid>
 
                     </Container>

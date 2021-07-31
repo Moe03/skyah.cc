@@ -16,14 +16,228 @@
     gtag('config', 'UA-151329005-2');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:500,700,900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+
   <style>
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type=checkbox],
+input[type=radio] {
+    --active: #272727;
+    --active-inner: #00ffb2;
+    --focus: 0px #00ffb2;
+    --border:#00ffb2;
+    --border-hover: #00ffb2;
+    --background: #4e4e4e;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 0px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  input[type=checkbox]:after,
+input[type=radio]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+  input[type=checkbox]:checked,
+input[type=radio]:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: .3s;
+    --d-t: .6s;
+    --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+  }
+  input[type=checkbox]:disabled,
+input[type=radio]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+  input[type=checkbox]:disabled:checked,
+input[type=radio]:disabled:checked {
+    --b: var(--disabled-inner);
+    --bc: var(--border);
+  }
+  input[type=checkbox]:disabled + label,
+input[type=radio]:disabled + label {
+    cursor: not-allowed;
+  }
+  input[type=checkbox]:hover:not(:checked):not(:disabled),
+input[type=radio]:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
+  input[type=checkbox]:focus,
+input[type=radio]:focus {
+    box-shadow: 0 0 0 var(--focus);
+  }
+  input[type=checkbox]:not(.switch),
+input[type=radio]:not(.switch) {
+    width: 21px;
+  }
+  input[type=checkbox]:not(.switch):after,
+input[type=radio]:not(.switch):after {
+    opacity: var(--o, 0);
+  }
+  input[type=checkbox]:not(.switch):checked,
+input[type=radio]:not(.switch):checked {
+    --o: 1;
+  }
+  input[type=checkbox] + label,
+input[type=radio] + label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  input[type=checkbox]:not(.switch) {
+    border-radius: 7px;
+  }
+  input[type=checkbox]:not(.switch):after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--active-inner);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 4px;
+    transform: rotate(var(--r, 20deg));
+  }
+  input[type=checkbox]:not(.switch):checked {
+    --r: 43deg;
+  }
+  input[type=checkbox].switch {
+    width: 38px;
+    border-radius: 11px;
+  }
+  input[type=checkbox].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+  }
+  input[type=checkbox].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+  }
+  input[type=checkbox].switch:disabled:not(:checked):after {
+    opacity: 0.6;
+  }
+
+  input[type=radio] {
+    border-radius: 50%;
+  }
+  input[type=radio]:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: var(--active-inner);
+    opacity: 0;
+    transform: scale(var(--s, 0.7));
+  }
+  input[type=radio]:checked {
+    --s: .5;
+  }
+}
+ul {
+  margin: 12px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 320px;
+}
+ul li {
+  margin: 16px 0;
+  position: relative;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", Arial, sans-serif;
+  color: #8A91B4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F6F8FF;
+}
+@media (max-width: 800px) {
+  body {
+    flex-direction: column;
+  }
+}
+    .checkbox-div {
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .checkbox-div label {
+      margin-right: 30px;
+    }
+    label span {
+      margin-top: 10px;
+    }
+    ::placeholder {
+      font-family: Poppins;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 5px;
+    }
+    .searchDiv{
+      width: 100%;
+    }
+
+    input[type=text] {
+      background-color: #A9A9A9;
+      width: 50%;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 0;
+    }
+    .skyah{
+      font-weight: 700;
+    }
+    .site{
+      font-family: Poppins;
+      font-size: 30px;
+      font-weight: 900 !important;
+    }
     html,
     body {
       font-size: 1rem;
       color: white !important;
-      background: #252525 !important;
+      background: #141414 !important;
       font-family: Poppins !important;
     }
 
@@ -43,8 +257,8 @@
       color: #00ffb2 !important;
     }
 
-    a:hover {
-      color: #00ffb2 !important;
+    a:hover{
+      color: inherit;
     }
 
     .nav-item:hover{
@@ -54,7 +268,8 @@
     }
 
     .active-yes {
-      color: #00ffb2 !important;
+      color: black !important;
+      background-color: #00ffb2 !important;
       border: 2px solid #00ffb2 !important;
     }
 
@@ -70,6 +285,9 @@
     .ui.secondary.pointing.menu {
       margin-bottom: 5vh;
     }
+    .auction-model{
+      background: #1b1b1b;
+    }
 
     .ui.secondary.pointing.menu .item:hover {
       color: #00ffb2 !important;
@@ -80,6 +298,17 @@
       top: 2.5rem !important;
       right: 2.5rem !important;
 
+    }
+
+    .modal{
+     
+      right: 0;
+    }
+
+    .list-headers{
+      font-weight: 700;
+      color: #44ffb2;
+      letter-spacing: 3px;
     }
 
     .ui.collapsing.table {
@@ -153,7 +382,7 @@
       border: 2px solid white;
       border-radius: 50px;
       padding: 8px 55px;
-      margin: 20px 15px;
+      margin: 20px 30px;
       background-color: #363636;
       color: white;
     }
@@ -325,6 +554,18 @@
     .main-color {
       color: #00FFB2 !important;
     }
+
+    .active-yes:hover {
+      color: black !important;
+    }
+    .scrolling{
+      overflow-y: hidden;
+      height: min-content;
+    }
+    .back-btn{
+      border: 2px solid #44ffb2;
+      padding: 10px;
+    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
@@ -333,7 +574,7 @@
 </head>
 
 <body>
-  <div class="box">
+  <div class="box" style="width: 100%">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 

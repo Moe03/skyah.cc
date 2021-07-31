@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
+    "react-custom-checkbox": "^2.0.0",
     "react-dom": "^16.11.0",
+    "react-icons": "^4.2.0",
     "react-key-handler": "^1.2.0-beta.3",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "semantic-ui-css": "^2.4.1",

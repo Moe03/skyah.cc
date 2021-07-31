@@ -44,6 +44,9 @@ class Auction extends Component {
       var count = "x" + a["item_count"];
       var s = "s";
     }
+    let bin;
+    bin = a["bin"] ? <span style={{color: "#44ffb2", fontWeight: "700"}}>[BIN]</span> : '';
+
 
     const detailsBtn = <button id={id} onClick={this.getUsername} className="app-btn" >Details</button>;
 
@@ -53,7 +56,7 @@ class Auction extends Component {
       <div style={{ border: "5px solid #00ffb2", padding: "20px", margin: "20px 0", borderRadius: "5px" }} className="auction-model">
 
         <div style={{ marginBottom: "10px" }} className="top t-c extra-bold">
-          <p>{a["item_name"]}{s} <span style={{ fontSize: "12px", fontWeight: "500" }}>{count}</span></p>
+          <p>{a["item_name"]}{s} <span style={{ fontSize: "12px", fontWeight: "500" }}>{count} {bin}</span></p>
         </div>
 
         <div className="below">

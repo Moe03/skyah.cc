@@ -1,3 +1,9 @@
+TODO LIST:
+SHOW BIN AUCTIONS
+MAKE SITE RESPONSIVE
+ADD NICE COOL BACKGROUND
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

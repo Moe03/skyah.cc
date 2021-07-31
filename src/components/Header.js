@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { Container } from 'semantic-ui-react';
 
 class Header extends Component {
 
@@ -53,27 +54,28 @@ class Header extends Component {
 
         return (
             
-            <nav className="" style={{ marginTop: "25px", marginBottom: "45px" }}>
-                <h3 style={{ textAlign: "center", letterSpacing: "30px" }}>SKYA<span style={{letterSpacing: "0" }}>H</span></h3>
+            <nav className="skyah container" style={{ marginTop: "25px", marginBottom: "15px" }}>
+                <h3 className="site" style={{ textAlign: "center", letterSpacing: "27px" }}>SKYA<span style={{letterSpacing: "0" }}>H</span></h3>
                 <div className="disp-flex" style={{ justifyContent: "center" }}>
-                    
-                    <div className="disp-flex">
-                        <Link value="home" onClick={this.handleActive} to="/">
+                    <Container>
+                    <div className="d-flex row justify-content-center">
+                        <Link className="col-12 col-md-4 text-center" value="home" onClick={this.handleActive} to="/">
                             <div value="home" className={homeClass}>
-                                <a value="home" href="#home">HOME</a>
+                                <a style={{ letterSpacing: '3px' }} value="home" href="#home">HOME</a>
                             </div>
                         </Link>
-                        <Link value="ah" onClick={this.handleActive} to="/ah">
+                        <Link className="col-12 col-md-4 text-center" value="ah" onClick={this.handleActive} to="/ah">
                             <div value="ah" className={ahClass}>
-                                <a value="ah" href="#ah">AH</a>
+                                <a style={{ letterSpacing: '3px' }} value="ah" href="#ah">AH</a>
                             </div>
                         </Link>
-                        <Link value="info" onClick={this.handleActive} to="/info">
+                        <Link className="col-12 col-md-4 text-center" value="info" onClick={this.handleActive} to="/info">
                             <div value="info" className={infoClass}>
-                                <a value="info" href="#info">INFO</a>
+                                <a style={{ letterSpacing: '3px' }} value="info" href="#info">INFO</a>
                             </div>
                         </Link>
                     </div>
+                    </Container>
                 </div>
             </nav>
         )
