@@ -109,11 +109,11 @@ class SearchSection extends Component {
 
         if(this.state.searchValue.includes("/ah")){
 
-            return <h3 className="text-center">Showing auctions of {this.state.searchValue.replace("/ah ", "")}</h3>
+            return <h3 className="text-center" style={{ letterSpacing: "7px" }}>SHOWING AUCTIONS OF <span style={{ color: '#44ffb2' }} className="text-uppercase">{this.state.searchValue.replace("/ah ", "")}</span></h3>
         }
         if(this.state.searchValue.includes("/spy")){
            
-            return <h3 className="text-center">Spying on {this.state.searchValue.replace("/spy ", "")}</h3>
+            return <h3 className="text-center" style={{ letterSpacing: "7px" }}>AUCTIONS <span style={{ color: '#44ffb2' }} className="text-uppercase">{this.state.searchValue.replace("/spy ", "")}</span> HAS BID ON</h3>
         }
         else{
             return <h3 className="text-center" style={{ letterSpacing: "7px" }}>SEARCH RESULTS</h3>

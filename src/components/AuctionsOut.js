@@ -69,6 +69,11 @@ class AuctionsOut extends Component {
 
         })
 
+        window.setInterval(() => {
+            
+            this.setState({ realUnix: this.state.realUnix + 1000 });
+        }, 1000)
+
 
         if (this.props.searchStatus == false) {
 
@@ -105,10 +110,6 @@ class AuctionsOut extends Component {
 
 
     render() {  
-
-        console.log(this.props.auctions);
-        console.log(this.state.auctions.length);
-        console.log(this.props.search);
      
         if( (this.state.auctions.length == 0 && this.props.auctions.length == 0) || (this.props.search == false) ){
             return(
