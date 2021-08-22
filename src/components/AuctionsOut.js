@@ -24,7 +24,7 @@ class AuctionsOut extends Component {
         super(props);
 
 
-        const APIlink = "https://hyskyapi.com/apihandle.php?req=";
+        const APIlink = "https://3.143.149.23/apihandle.php?req=";
 
 
         this.state = {
@@ -62,7 +62,7 @@ class AuctionsOut extends Component {
     componentDidMount() {
 
 
-        $.getJSON("https://hyskyapi.com/getTimenow.php", (result) => {
+        $.getJSON("https://3.143.149.23/getTimenow.php", (result) => {
 
 
             this.setState({ realUnix: result });

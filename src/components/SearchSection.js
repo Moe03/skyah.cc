@@ -19,7 +19,7 @@ class SearchSection extends Component {
         super(props);
         this.state = {
             auctions: [],
-            APIlink: "https://hyskyapi.com/apihandle.php?req=",
+            APIlink: "https://3.143.149.23/apihandle.php?req=",
             searchStatus: false,
             page: 1,
             search: true,
