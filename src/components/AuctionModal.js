@@ -107,7 +107,7 @@ class AuctionModal extends Component {
     };
 
     getUsername = () => {
-        const API = "https://hyskyapi.000webhostapp.com/"
+        const API = "https://api.mystichat.xyz/"
         const a = this.props.det;
 
         $.getJSON( API + "getusername.php?uuid=" + this.props.det["auctioneer"], (result) => {
